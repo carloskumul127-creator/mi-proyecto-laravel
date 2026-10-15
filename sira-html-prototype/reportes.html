@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIRA - Reportes Ambientales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar styling for WebKit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f3f4f6; /* Light background for track */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0f5132; /* Primary dark green */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10b981; /* Teal hover */
+        }
+        .sidebar-scroll {
+            overflow-y: auto;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: #1f2937; /* Darker track for sidebar */
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Sidebar Fijo -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-screen w-72 bg-[#1e293b] text-gray-300 z-30 transition-transform duration-300 ease-in-out md:translate-x-0">
+        <div class="flex flex-col h-full">
+            <!-- Logo/Brand -->
+            <div class="flex items-center justify-center h-20 bg-gray-900/40 shadow-md border-b border-gray-700">
+                <div class="flex items-center">
+                    <svg class="w-8 h-8 text-emerald-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 17.75l4.376-.967a.75.75 0 00.483-.804l-.654-4.773c-.103-1.253.514-2.487 1.619-3.275.598-.436 1.124-1.015 1.496-1.756.363-.74.53-1.58.512-2.424-.017-1.492-.76-2.81-1.81-3.872-.974-1.004-2.306-1.541-3.698-1.541H5.013c-1.392 0-2.724.537-3.698 1.541-.81.824-1.371 1.913-1.511 3.052-.017 1.492.512 2.424 1.511 3.052.598.436 1.124 1.015 1.496 1.756.363.74.53 1.58.512 2.424-.017 1.492-.76 2.81-1.81 3.872l-.654 4.773c-.089.659.104 1.319.483.804L5.013 17.75v3.75a.75.75 0 00.75.75h12.474a.75.75 0 00.75-.75v-3.75z"></path></svg>
+                    <span class="text-xl font-bold text-white ml-1">SIRA</span>
+                </div>
+            </div>
+
+            <!-- Enlaces de Navegación -->
+            <nav class="flex-1 px-3 py-4 overflow-y-auto sidebar-scroll">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="index.html" class="flex items-center p-3 rounded-xl text-gray-300 hover:bg-emerald-600 hover:text-white transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-emerald-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M3 12v7a2 2 0 002 2h3m0 0h6a2 2 0 002-2v-7"></path></svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="manifiestos.html" class="flex items-center p-3 rounded-xl text-gray-300 hover:bg-emerald-600 hover:text-white transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-emerald-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-3m-4 18H7a2 2 0 01-2-2V5a2 2 0 012-2h4a2 2 0 012 2v1h3a2 2 0 012 2v16a2 2 0 01-2 2h-3z"></path></svg>
+                            Manifiestos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="bitacora.html" class="flex items-center p-3 rounded-xl text-gray-300 hover:bg-emerald-600 hover:text-white transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-teal-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2 2-2"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18l2-2 2-2"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M4 4h16v12a2 2 0 002 2h-5.586a1 1 0 00-.707.293l-5.414 5.414a1 1 0 01-.707.293H7a1 1 0 01-.707-.293l-5.414-5.414A1 1 0 005.586 16H4V4z"></path></svg>
+                            Bitácora
+                        </a>
+                    </li>
+                    <li>
+                        <a href="trazabilidad.html" class="flex items-center p-3 rounded-xl text-gray-300 hover:bg-emerald-600 hover:text-white transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-cyan-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7V3z"></path></svg>
+                            Trazabilidad
+                        </a>
+                    </li>
+                    <li>
+                        <a href="alertas.html" class="flex items-center p-3 rounded-xl text-gray-300 hover:bg-emerald-600 hover:text-white transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-red-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.5 3-1.5 3H15a2 2 0 01-2-2v-4a2 2 0 012-2zm7-17v2a2 2 0 01-2 2h-1l-3-4h3a2 2 0 012 2zm-10 0h2a2 2 0 012 2v16a2 2 0 01-2 2h-2a2 2 0 01-2-2V2a2 2 0 012-2z"></path></svg>
+                            Alertas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reportes.html" class="flex items-center p-3 rounded-xl bg-emerald-800/60 text-white font-medium transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 002 2h2a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2z"></path></svg>
+                            Reportes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="empresas.html" class="flex items-center p-3 rounded-xl text-gray-300 hover:bg-emerald-600 hover:text-white transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-indigo-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0v-10a2 2 0 00-2-2h-5a2 2 0 00-2 2v10m14 0V5a2 2 0 00-2-2H7a2 2 0 00-2 2v10m14 0a2 2 0 002 2h3m0 0a2 2 0 002-2V5a2 2 0 00-2-2h-3a2 2 0 00-2 2v10z"></path></svg>
+                            Empresas
+                        </a>
+                    </li>
+                    <li>
+                        <a href="usuarios.html" class="flex items-center p-3 rounded-xl text-gray-300 hover:bg-emerald-600 hover:text-white transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-pink-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a15.255 15.255 0 01o 15.292c0 .854-.673 1.596-1.549 1.596l-1.444-.001m-7.5 1.272l7.5 1.272 7.5-1.272l-7.5-1.272Z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11.75c0 .69.56 1.25 1.25 1.25s1.25-.56 1.25-1.25V9c0-.69-.56-1.25-1.25-1.25s-1.25.56-1.25 1.25v2.75z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.25 11.75c0 .69.56 1.25 1.25 1.25s1.25-.56 1.25-1.25V9c0-.69-.56-1.25-1.25-1.25s-1.25.56-1.25 1.25v2.75z"></path></svg>
+                            Usuarios
+                        </a>
+                    </li>
+                    <li>
+                        <a href="configuracion.html" class="flex items-center p-3 rounded-xl text-gray-300 hover:bg-emerald-600 hover:text-white transition duration-200 group">
+                            <svg class="w-6 h-6 mr-3 text-yellow-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.315c.413-.413 1.076-.413 1.489 0 0 0 1.313 1.313 1.313 1.313.413.413.413 1.076 0 1.489a1.076 1.076 0 01-1.489 0c-.413-.413-.413-1.076 0-1.489l.798-.798c.136-.136.136-.355 0-.516l-.798-.798c-.413-.413-1.076-.413-1.489 0 0 0-1.313 1.313-1.313 1.313-.413.413-.413 1.076 0 1.489l.798.798zm.136 12.798c-.413.413-1.076.413-1.489 0 0 0-1.313-1.313-1.313-1.313-.413-.413-.413-1.076 0-1.489l.798-.798c.136-.136.355-.136.516 0l.798.798c.413.413 1.076.413 1.489 0 0 0 1.313-1.313 1.313-1.313.413-.413.413-1.076 0-1.489l-.798-.798a.767.767 0 00-.516 0l-.798.798zM12 13.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"></path></svg>
+                            Configuración
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <div class="flex-1 flex flex-col overflow-hidden md:ml-72">
+
+        <!-- Header Sticky -->
+        <header class="sticky top-0 z-20 bg-white border-b border-gray-200 h-20 px-6 flex items-center justify-between">
+            <!-- Botón Hamburguesa para Sidebar (oculto en pantallas medianas y grandes) -->
+            <button id="mobile-menu-button" class="md:hidden mr-4 text-gray-600 hover:text-emerald-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+
+            <!-- Título de la Página -->
+            <h2 class="text-2xl font-bold text-gray-800">Reportes Ambiental y ESG</h2>
+
+            <!-- Elementos de la derecha (Buscador, Notificaciones, Perfil) -->
+            <div class="flex items-center ml-auto">
+                 <!-- Barra de Búsqueda -->
+                 <div class="relative mr-6 hidden sm:block">
+                    <input type="text" placeholder="Buscar reporte..." class="w-64 py-2 pl-10 pr-4 text-gray-700 bg-slate-100 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition duration-200 ease-in-out">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Icono de Notificaciones -->
+                <div class="relative mr-5">
+                    <button class="text-gray-600 hover:text-emerald-600 focus:outline-none">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.5 3-1.5 3H15a2 2 0 01-2-2v-4a2 2 0 012-2zm7-17v2a2 2 0 01-2 2h-1l-3-4h3a2 2 0 012 2zm-10 0h2a2 2 0 012 2v16a2 2 0 01-2 2h-2a2 2 0 01-2-2V2a2 2 0 012-2z"></path>
+                        </svg>
+                    </button>
+                    <!-- Punto indicador rojo -->
+                    <span class="absolute top-0 right-0 block w-3 h-3 bg-red-500 rounded-full ring-2 ring-white"></span>
+                </div>
+
+                <!-- Avatar de Usuario -->
+                <div class="relative">
+                    <button class="flex items-center text-gray-600 hover:text-emerald-600 focus:outline-none">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-inner">AD</div>
+                         <div class="ml-3 text-left hidden sm:block">
+                            <p class="text-sm font-semibold text-gray-800">Admin SIRA</p>
+                            <p class="text-xs text-gray-500">SEMARNAT</p>
+                        </div>
+                        <svg class="w-5 h-5 ml-2 text-gray-500 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                     <!-- Dropdown de perfil (opcional) -->
+                     <div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-1 ring-1 ring-black ring-opacity-5 hidden transition-opacity duration-200 ease-out">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-100">Mi Perfil</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-100">Configuración</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-slate-100">Cerrar Sesión</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido del Módulo de Reportes -->
+        <main class="flex-1 p-6">
+
+            <!-- Sección de Generación de Reportes -->
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-200/80 p-6 mb-6 transition duration-300 ease-in-out">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Generación de Informes de Cumplimiento SEMARNAT</h3>
+
+                <!-- Formulario de Parámetros (simplificado para este ejemplo) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label for="periodo-reporte" class="block text-xs font-semibold uppercase text-gray-500 mb-1">Periodo</label>
+                        <select id="periodo-reporte" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition duration-200 ease-in-out">
+                            <option value="anual">Anual</option>
+                            <option value="semestral">Semestral</option>
+                            <option value="mensual">Mensual</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="formato-reporte" class="block text-xs font-semibold uppercase text-gray-500 mb-1">Formato</label>
+                        <select id="formato-reporte" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition duration-200 ease-in-out">
+                            <option value="pdf">PDF</option>
+                            <option value="excel">Excel (XLSX)</option>
+                            <option value="csv">CSV</option>
+                        </select>
+                    </div>
+                     <div>
+                        <label for="empresa-reporte" class="block text-xs font-semibold uppercase text-gray-500 mb-1">Empresa/Planta</label>
+                        <select id="empresa-reporte" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-transparent transition duration-200 ease-in-out">
+                            <option value="">Todas</option>
+                            <option value="industrias-sa">Industrias S.A.</option>
+                            <option value="construcciones-xyz">Construcciones XYZ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grid de Plantillas de Reportes -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Plantilla COA -->
+                    <div class="bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-200/80 p-6 transition duration-300 ease-in-out flex flex-col justify-between">
+                        <div class="flex flex-col items-center">
+                             <svg class="w-10 h-10 text-emerald-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                            <h4 class="text-base font-bold text-gray-800 mb-1 text-center">Cédula de Operación Anual (COA)</h4>
+                            <p class="text-xs text-gray-500 text-center">SEMARNAT</p>
+                        </div>
+                        <button class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 text-sm">Generar</button>
+                    </div>
+                    <!-- Plantilla Declaración RP -->
+                    <div class="bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-200/80 p-6 transition duration-300 ease-in-out flex flex-col justify-between">
+                        <div class="flex flex-col items-center">
+                             <svg class="w-10 h-10 text-amber-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m0 6l8 4 8-4m-12 3h8m0 0l-4 4 4 4M3 17l3-3h12M3 7l3-3h12m0 0a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2h12"></path></svg>
+                            <h4 class="text-base font-bold text-gray-800 mb-1 text-center">Declaración Anual Res. Peligrosos</h4>
+                            <p class="text-xs text-gray-500 text-center">SEMARNAT</p>
+                        </div>
+                        <button class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 text-sm">Generar</button>
+                    </div>
+                    <!-- Plantilla Balance Masa / Huella Carbono -->
+                     <div class="bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-200/80 p-6 transition duration-300 ease-in-out flex flex-col justify-between">
+                        <div class="flex flex-col items-center">
+                             <svg class="w-10 h-10 text-cyan-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5 5 5M7 17l5-5 5 5m-5-4v-5a1 1 0 011-1H7a1 1 0 01-1-1V9a1 1 0 011-1h10a1 1 0 011 1v5M5 19a2 2 0 002 2h10a2 2 0 002-2"></path></svg>
+                            <h4 class="text-base font-bold text-gray-800 mb-1 text-center">Balance Masa / Huella Carbono</h4>
+                            <p class="text-xs text-gray-500 text-center">Análisis Integrado</p>
+                        </div>
+                        <button class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 text-sm">Generar</button>
+                    </div>
+                    <!-- Plantilla ESG -->
+                     <div class="bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-200/80 p-6 transition duration-300 ease-in-out flex flex-col justify-between">
+                        <div class="flex flex-col items-center">
+                             <svg class="w-10 h-10 text-indigo-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 00-14 0m14 0h4M4 11h4m0 0a7 7 0 0114 0m-4 4h-12"></path></svg>
+                            <h4 class="text-base font-bold text-gray-800 mb-1 text-center">Indicadores ESG</h4>
+                            <p class="text-xs text-gray-500 text-center">Sustentabilidad Corporativa</p>
+                        </div>
+                        <button class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 text-sm">Generar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historial de Reportes Generados -->
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-200/80 p-6 transition duration-300 ease-in-out">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Historial de Reportes Generados</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50 rounded-t-xl">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-xl">Nombre del Reporte</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha Generación</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Periodo</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Formato</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Usuario</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-xl">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-100">
+                            <!-- Reporte 1 -->
+                            <tr class="hover:bg-slate-50 transition duration-150 ease-in-out">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">COA - Industrias S.A.</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2026-10-08 11:00:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">PDF</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Admin SIRA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button class="bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-lg text-xs font-semibold transition duration-200">
+                                        <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                                        Descargar
+                                    </button>
+                                    <button class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-lg text-xs font-semibold transition duration-200">
+                                        <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.479 9 12c0-.479-.114-.938-.316-1.342m0 2.684a3.998 3.998 0 010 7.218m0-7.218c.556-.65.967-1.25 1.12-2.122a3.998 3.998 0 00-6.875-1.07l-1.123 1.123m1.123 5.526a3.998 3.998 0 00-1.12-2.762m0 5.526a3.998 3.998 0 010-7.218"></path></svg>
+                                        Compartir
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Reporte 2 -->
+                             <tr class="hover:bg-slate-50 transition duration-150 ease-in-out">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Declaración Anual RP - Industrias S.A.</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2026-10-07 14:20:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">XLSX</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Admin SIRA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                     <button class="bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-lg text-xs font-semibold transition duration-200">
+                                        <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                                        Descargar
+                                    </button>
+                                     <button class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-lg text-xs font-semibold transition duration-200">
+                                        <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.479 9 12c0-.479-.114-.938-.316-1.342m0 2.684a3.998 3.998 0 010 7.218m0-7.218c.556-.65.967-1.25 1.12-2.122a3.998 3.998 0 00-6.875-1.07l-1.123 1.123m1.123 5.526a3.998 3.998 0 00-1.12-2.762m0 5.526a3.998 3.998 0 010-7.218"></path></svg>
+                                        Compartir
+                                    </button>
+                                </td>
+                            </tr>
+                             <!-- Reporte 3 -->
+                             <tr class="hover:bg-slate-50 transition duration-150 ease-in-out">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Balance Masa RP - Construcciones XYZ</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2026-10-06 09:45:00</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">2025</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">CSV</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Admin SIRA</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                     <button class="bg-emerald-500 hover:bg-emerald-600 text-white py-1 px-3 rounded-lg text-xs font-semibold transition duration-200">
+                                        <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                                        Descargar
+                                    </button>
+                                     <button class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-lg text-xs font-semibold transition duration-200">
+                                        <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.479 9 12c0-.479-.114-.938-.316-1.342m0 2.684a3.998 3.998 0 010 7.218m0-7.218c.556-.65.967-1.25 1.12-2.122a3.998 3.998 0 00-6.875-1.07l-1.123 1.123m1.123 5.526a3.998 3.998 0 00-1.12-2.762m0 5.526a3.998 3.998 0 010-7.218"></path></svg>
+                                        Compartir
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-[#1e293b] text-gray-300 text-center py-5 mt-auto shadow-inner">
+            <div class="container mx-auto px-6">
+                &copy; 2026 SIRA Environmental Waste SaaS. Todos los derechos reservados.
+            </div>
+        </footer>
+
+    </div> <!-- Fin Contenido Principal -->
+
+    <script>
+        // Script para Toggle del Sidebar en Móvil
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            // Blur background when sidebar is open on mobile
+            if (sidebar.classList.contains('-translate-x-full')) {
+                document.getElementById('content-wrapper').classList.remove('blur-sm');
+                document.getElementById('header-wrapper').classList.remove('blur-sm');
+            } else {
+                document.getElementById('content-wrapper').classList.add('blur-sm');
+                document.getElementById('header-wrapper').classList.add('blur-sm');
+            }
+        });
+
+        // Optional: Close sidebar if clicking outside of it on mobile
+        document.addEventListener('click', (event) => {
+            if (!sidebar.classList.contains('-translate-x-full') && !sidebar.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                 sidebar.classList.add('-translate-x-full');
+                 document.getElementById('content-wrapper').classList.remove('blur-sm');
+                 document.getElementById('header-wrapper').classList.remove('blur-sm');
+            }
+        });
+
+         // Add IDs to elements if they don't exist for the blur effect
+        if (!document.getElementById('content-wrapper')) {
+            document.querySelector('.flex-1.flex.flex-col.overflow-hidden').id = 'content-wrapper';
+        }
+         if (!document.getElementById('header-wrapper')) {
+            document.querySelector('header').id = 'header-wrapper';
+        }
+    </script>
+
+</body>
+</html>

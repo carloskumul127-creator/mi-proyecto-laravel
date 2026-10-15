@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIRA - Gestión de Manifiestos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilos adicionales para simulacion de scrollbars en navegadores WebKit */
+        ::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #1f2937; /* Dark background */
+          border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #0f5132; /* Primary dark green */
+          border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #10b981; /* Teal hover */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Contenedor principal -->
+    <div class="flex min-h-screen">
+
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-72 bg-gray-800 text-gray-300 min-h-screen fixed inset-y-0 left-0 transform -translate-x-full md:translate-x-0 transition duration-200 ease-in-out flex-shrink-0 z-20">
+            <div class="flex flex-col h-full">
+                <!-- Logo/Brand -->
+                <div class="flex items-center justify-center h-20 bg-gray-900 shadow-md">
+                    <h1 class="text-2xl font-bold text-white">SIRA</h1>
+                </div>
+
+                <!-- Enlaces de Navegación -->
+                <nav class="flex-1 px-3 py-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-800">
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="index.html" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-green-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9 9 9M3 12v7a2 2 0 002 2h3m0 0h6a2 2 0 002-2v-7"></path></svg>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manifiestos.html" class="flex items-center p-3 rounded-lg bg-emerald-800/60 text-white font-medium transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-3m-4 18H7a2 2 0 01-2-2V5a2 2 0 012-2h4a2 2 0 012 2v1h3a2 2 0 012 2v16a2 2 0 01-2 2h-3z"></path></svg>
+                                Manifiestos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="bitacora.html" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-cyan-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l2-2 2-2"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18l2-2 2-2"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M4 4h16v12a2 2 0 002 2h-5.586a1 1 0 00-.707.293l-5.414 5.414a1 1 0 01-.707.293H7a1 1 0 01-.707-.293l-5.414-5.414A1 1 0 005.586 16H4V4z"></path></svg>
+                                Bitácora
+                            </a>
+                        </li>
+                        <li>
+                            <a href="trazabilidad.html" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-blue-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7V3z"></path></svg>
+                                Trazabilidad
+                            </a>
+                        </li>
+                        <li>
+                            <a href="alertas.html" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-red-500 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.5 3-1.5 3H15a2 2 0 01-2-2v-4a2 2 0 012-2zm7-17v2a2 2 0 01-2 2h-1l-3-4h3a2 2 0 012 2zm-10 0h2a2 2 0 012 2v16a2 2 0 01-2 2h-2a2 2 0 01-2-2V2a2 2 0 012-2z"></path></svg>
+                                Alertas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="reportes.html" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-purple-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 002 2h2a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2z"></path></svg>
+                                Reportes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="empresas.html" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-indigo-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0v-10a2 2 0 00-2-2h-5a2 2 0 00-2 2v10m14 0V5a2 2 0 00-2-2H7a2 2 0 00-2 2v10m14 0a2 2 0 002 2h3m0 0a2 2 0 002-2V5a2 2 0 00-2-2h-3a2 2 0 00-2 2v10z"></path></svg>
+                                Empresas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="usuarios.html" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-pink-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a15.255 15.255 0 01o 15.292c0 .854-.673 1.596-1.549 1.596l-1.444-.001m-7.5 1.272l7.5 1.272 7.5-1.272l-7.5-1.272Z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11.75c0 .69.56 1.25 1.25 1.25s1.25-.56 1.25-1.25V9c0-.69-.56-1.25-1.25-1.25s-1.25.56-1.25 1.25v2.75z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.25 11.75c0 .69.56 1.25 1.25 1.25s1.25-.56 1.25-1.25V9c0-.69-.56-1.25-1.25-1.25s-1.25.56-1.25 1.25v2.75z"></path></svg>
+                                Usuarios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="configuracion.html" class="flex items-center p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 group">
+                                <svg class="w-6 h-6 mr-3 text-yellow-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.315c.413-.413 1.076-.413 1.489 0 0 0 1.313 1.313 1.313 1.313.413.413.413 1.076 0 1.489a1.076 1.076 0 01-1.489 0c-.413-.413-.413-1.076 0-1.489l.798-.798c.136-.136.136-.355 0-.516l-.798-.798c-.413-.413-1.076-.413-1.489 0 0 0-1.313 1.313-1.313 1.313-.413.413-.413 1.076 0 1.489l.798.798zm.136 12.798c-.413.413-1.076.413-1.489 0 0 0-1.313-1.313-1.313-1.313-.413-.413-.413-1.076 0-1.489l.798-.798c.136-.136.355-.136.516 0l.798.798c.413.413 1.076.413 1.489 0 0 0 1.313-1.313 1.313-1.313.413-.413.413-1.076 0-1.489l-.798-.798a.767.767 0 00-.516 0l-.798.798zM12 13.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3z"></path></svg>
+                                Configuración
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col overflow-hidden md:ml-72">
+
+            <!-- Header -->
+            <header class="bg-white shadow-md sticky top-0 z-10 flex items-center h-20 px-6">
+                <!-- Botón Hamburguesa para Sidebar (oculto en pantallas medianas y grandes) -->
+                <button id="mobile-menu-button" class="md:hidden mr-4 text-gray-600 hover:text-green-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+
+                <!-- Título de la Página -->
+                <h2 class="text-2xl font-semibold text-gray-700">Gestión de Manifiestos</h2>
+
+                <!-- Barra de Búsqueda -->
+                <div class="relative ml-auto mr-6">
+                    <input type="text" placeholder="Buscar manifiesto..." class="w-full py-2 pl-10 pr-4 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Iconos de Notificación y Perfil -->
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-600 hover:text-green-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.5 3-1.5 3H15a2 2 0 01-2-2v-4a2 2 0 012-2zm7-17v2a2 2 0 01-2 2h-1l-3-4h3a2 2 0 012 2zm-10 0h2a2 2 0 012 2v16a2 2 0 01-2 2h-2a2 2 0 01-2-2V2a2 2 0 012-2z"></path>
+                        </svg>
+                    </button>
+                    <div class="relative">
+                        <button class="flex items-center text-gray-600 hover:text-green-600 focus:outline-none">
+                            <svg class="w-8 h-8 rounded-full border-2 border-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            <span class="ml-2 font-medium">Admin</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <!-- Dropdown de perfil (opcional) -->
+                         <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-1 ring-1 ring-black ring-opacity-5 hidden">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Perfil</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Configuración</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido del Módulo de Manifiestos -->
+            <main class="flex-1 p-6">
+
+                <!-- Encabezado del Módulo y Botón Nuevo -->
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4 sm:mb-0">Gestión de Manifiestos (SEMARNAT)</h3>
+                    <button class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-300 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        + Nuevo Manifiesto
+                    </button>
+                </div>
+
+                <!-- Barra de Filtros -->
+                <div class="bg-white rounded-xl shadow-lg p-6 mb-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
+                    <!-- Filtro Estado -->
+                    <div>
+                        <label for="estado" class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+                        <select id="estado" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            <option value="">Todos</option>
+                            <option value="completado">Completado</option>
+                            <option value="en-transito">En Tránsito</option>
+                            <option value="incidencia">Incidencia</option>
+                            <option value="pendiente">Pendiente</option>
+                        </select>
+                    </div>
+
+                    <!-- Filtro Rango de Fechas -->
+                    <div class="md:col-span-2 lg:col-span-1">
+                        <label for="fecha" class="block text-sm font-medium text-gray-700 mb-1">Rango de Fechas</label>
+                        <input type="date" id="fecha" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <!-- Podría usarse un plugin de rango de fechas más avanzado si fuera necesario -->
+                    </div>
+
+                    <!-- Filtro Tipo de Residuo -->
+                    <div>
+                        <label for="tipo-residuo" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Residuo</label>
+                        <select id="tipo-residuo" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            <option value="">Todos</option>
+                            <option value="rp">Residuos Peligrosos (RP)</option>
+                            <option value="rme">Residuos de Manejo Especial (RME)</option>
+                            <option value="rsu">Residuos Sólidos Urbanos (RSU)</option>
+                        </select>
+                    </div>
+                    <!-- Botón de búsqueda (opcional, puede activarse al cambiar filtros) -->
+                     <button class="self-end bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                        Filtrar
+                    </button>
+                </div>
+
+                <!-- Tabla de Manifiestos -->
+                <div class="bg-white rounded-xl shadow-lg p-6 overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">ID Manifiesto</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha Emisión</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Generador</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transportista</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destino Final</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo Residuo</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">Cantidad (Kg)</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Registro 1 -->
+                            <tr>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">M-2026-001234</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">2026-10-07</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Industrias S.A.</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Transportes Verdes Ltda.</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Planta de Tratamiento Alfa</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Peligroso</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500 text-right">1500.50</td>
+                                <td class="px-4 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completado</span></td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-900">Ver</button>
+                                    <button class="text-gray-600 hover:text-gray-900">
+                                        <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Registro 2 -->
+                            <tr>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">M-2026-001235</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">2026-10-07</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Construcciones XYZ</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Logística Limpia</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Centro de Reciclaje Beta</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">No Peligroso</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500 text-right">5500.00</td>
+                                <td class="px-4 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En Tránsito</span></td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-900">Ver</button>
+                                    <button class="text-gray-600 hover:text-gray-900">
+                                        <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Registro 3 -->
+                            <tr>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">M-2026-001236</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">2026-10-06</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Laboratorios ABC</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Transportes Seguros</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Disposición Final Gamma</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Peligroso</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500 text-right">75.20</td>
+                                <td class="px-4 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completado</span></td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-900">Ver</button>
+                                    <button class="text-gray-600 hover:text-gray-900">
+                                        <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Registro 4 -->
+                            <tr>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">M-2026-001237</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">2026-10-05</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Oficinas Centrales</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Gestión Integral S.L.</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Planta de Compostaje Delta</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">RSU (Compostable)</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500 text-right">8000.00</td>
+                                <td class="px-4 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Incidencia</span></td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-900">Ver</button>
+                                    <button class="text-gray-600 hover:text-gray-900">
+                                        <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                             <!-- Registro 5 -->
+                             <tr>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">M-2026-001238</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">2026-10-04</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Farmacéutica Life</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Logística Salud</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Centro de Disposición Especial Epsilon</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Peligroso</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500 text-right">250.75</td>
+                                <td class="px-4 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En Tránsito</span></td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-900">Ver</button>
+                                    <button class="text-gray-600 hover:text-gray-900">
+                                        <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                             <!-- Registro 6 -->
+                             <tr>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">M-2026-001239</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">2026-10-03</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Empresa Textil Zeta</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">EcoTransportes</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Planta de Tratamiento Alfa</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">RME</td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500 text-right">1200.00</td>
+                                <td class="px-4 py-4 whitespace-nowrap"><span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completado</span></td>
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button class="text-blue-600 hover:text-blue-900">Ver</button>
+                                    <button class="text-gray-600 hover:text-gray-900">
+                                        <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2H7z"></path></svg>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Paginador -->
+                <div class="flex justify-center items-center mt-6">
+                    <nav class="relative z-0 inline-flex rounded-xl shadow-sm -space-x-px" aria-label="Paginación">
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 rounded-l-xl">
+                            Anterior
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-100">
+                            1
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-100">
+                            2
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-100">
+                            3
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-green-600 bg-green-50 border border-green-300 hover:bg-green-100">
+                            4
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-100">
+                            5
+                        </a>
+                        <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 rounded-r-xl">
+                            Siguiente
+                        </a>
+                    </nav>
+                </div>
+
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-gray-800 text-gray-300 text-center py-4 mt-auto">
+                <div class="container mx-auto px-6">
+                    &copy; 2026 SIRA Environmental Waste SaaS. Todos los derechos reservados.
+                </div>
+            </footer>
+
+        </div> <!-- Fin Contenido Principal -->
+
+    </div> <!-- Fin Contenedor Principal -->
+
+    <script>
+        // Script para Toggle del Sidebar en Móvil
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Opcional: Cerrar sidebar si se hace clic fuera de él en móvil
+        document.addEventListener('click', (event) => {
+            if (sidebar.classList.contains('-translate-x-full') && !sidebar.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+    </script>
+
+</body>
+</html>
